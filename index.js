@@ -16,7 +16,7 @@ console.log("======================================");
 const assitant = await getOrCreateAssistant("javascript");
 if (!assitant) { throw new Error("Cannot find assistant!");}
 
-var fm = new FileManager("test");
+var fm = new FileManager("./");
 await fm.createDirectory('output');
 
 const command = `Create a expressjs microservice with correlation id middleware, in memory cache, health routes, and swagger support. Please put the files in a nice folder structure.`;
