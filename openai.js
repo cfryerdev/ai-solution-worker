@@ -30,19 +30,19 @@ export const getPrompt = (language) => {
 
 export const getModel = () => "gpt-4-turbo";
 
-export const getAssistantName = () => "solution-writing-assistant";
+export const getAssistantName = (language) => `solution-writing-assistant-${language}`;
 
 export const getTools = () => [{ type: "code_interpreter" }];
 
 export async function getOrCreateAssistant(language) {
     const assistants = await instance.beta.assistants.list();
     const codeWriterAssistant = assistants.data.find(
-        (assistant) => assistant.name === getAssistantName()
+        (assistant) => assistant.name === getAssistantName(language)
     );
     return (
         codeWriterAssistant ??
         instance.beta.assistants.create({
-            name: getAssistantName(),
+            name: getAssistantName(language),
             description: "Solution Writing Assistant",
             temperature: 0.01,
             top_p: 1,
