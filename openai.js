@@ -44,7 +44,8 @@ export async function getOrCreateAssistant(language) {
         instance.beta.assistants.create({
             name: getAssistantName(),
             description: "Solution Writing Assistant",
-            temperature: 0,
+            temperature: 0.01,
+            top_p: 1,
             model: getModel(),
             instructions: getPrompt(language),
             tools: getTools()
